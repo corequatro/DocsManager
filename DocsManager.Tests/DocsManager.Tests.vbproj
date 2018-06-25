@@ -115,12 +115,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DocsManager\DocsManager.vbproj">
-      <Project>{5DFACB44-FEEB-4343-9346-EE6BD20483DC}</Project>
-      <Name>DocsManager</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
