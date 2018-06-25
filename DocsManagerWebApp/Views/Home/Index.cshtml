@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.Partial("Js/DocsUploadPageCntrl")
+@Html.Partial("Js/FileUploadDirectivePartial")
+
+
+<div ng-controller="DocsUploadPageCntrl">
+    {{helloIndexPage}}
+    <files-upload-control uploadfile-url="'@Url.Action("UploadDocument", "Files")'"
+                          removefile-url="'@Url.Action("DeleteFile", "Files")'">
+    </files-upload-control>
+</div>
