@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsManagerWebApp", "DocsManagerWebApp\DocsManagerWebApp.csproj", "{E115622F-B513-4087-9A33-A471F6AEF22F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsManager.Dal", "DocsManager.Dal\DocsManager.Dal.csproj", "{8F8762CE-6706-47B7-A6F7-F9B0C0B77C24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsManager.Domain", "DocsManager.Domain\DocsManager.Domain.csproj", "{4597CC6C-0D84-4ED6-8601-856468DD232E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{E115622F-B513-4087-9A33-A471F6AEF22F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E115622F-B513-4087-9A33-A471F6AEF22F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E115622F-B513-4087-9A33-A471F6AEF22F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F8762CE-6706-47B7-A6F7-F9B0C0B77C24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F8762CE-6706-47B7-A6F7-F9B0C0B77C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F8762CE-6706-47B7-A6F7-F9B0C0B77C24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F8762CE-6706-47B7-A6F7-F9B0C0B77C24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4597CC6C-0D84-4ED6-8601-856468DD232E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4597CC6C-0D84-4ED6-8601-856468DD232E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4597CC6C-0D84-4ED6-8601-856468DD232E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4597CC6C-0D84-4ED6-8601-856468DD232E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
