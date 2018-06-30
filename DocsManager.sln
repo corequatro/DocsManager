@@ -11,13 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsManager.Dal", "DocsMana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsManager.Domain", "DocsManager.Domain\DocsManager.Domain.csproj", "{4597CC6C-0D84-4ED6-8601-856468DD232E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsManager.IBll", "DocsManager.IBll\DocsManager.IBll.csproj", "{AD613007-D717-405F-9C10-765AEE41961B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsManager.Bll", "DocsManager.Bll\DocsManager.Bll.csproj", "{25A531E7-7EAB-4A09-B3D0-C6A88A2B14FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsManager.IRepository", "DocsManager.IDal\DocsManager.IRepository.csproj", "{27A38702-30D8-4859-8B97-19921DC383D7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsManager.Repository", "DocsManager.Repository\DocsManager.Repository.csproj", "{BDB93483-A725-4066-AAD9-F2A5F09FA581}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocsManager.IDal", "DocsManager.IDal\DocsManager.IDal.csproj", "{27A38702-30D8-4859-8B97-19921DC383D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +37,6 @@ Global
 		{4597CC6C-0D84-4ED6-8601-856468DD232E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4597CC6C-0D84-4ED6-8601-856468DD232E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4597CC6C-0D84-4ED6-8601-856468DD232E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD613007-D717-405F-9C10-765AEE41961B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD613007-D717-405F-9C10-765AEE41961B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD613007-D717-405F-9C10-765AEE41961B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD613007-D717-405F-9C10-765AEE41961B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{25A531E7-7EAB-4A09-B3D0-C6A88A2B14FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{25A531E7-7EAB-4A09-B3D0-C6A88A2B14FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25A531E7-7EAB-4A09-B3D0-C6A88A2B14FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,10 +45,6 @@ Global
 		{27A38702-30D8-4859-8B97-19921DC383D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27A38702-30D8-4859-8B97-19921DC383D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27A38702-30D8-4859-8B97-19921DC383D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BDB93483-A725-4066-AAD9-F2A5F09FA581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDB93483-A725-4066-AAD9-F2A5F09FA581}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDB93483-A725-4066-AAD9-F2A5F09FA581}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDB93483-A725-4066-AAD9-F2A5F09FA581}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

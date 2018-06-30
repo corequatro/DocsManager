@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using DocsManager.IBll;
+﻿using System.Web.Mvc;
 
 namespace DocsManagerWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IDocumentService _documentService;
-
-        public HomeController(IDocumentService documentService)
+        public HomeController()
         {
-            _documentService = documentService;
+
         }
 
         public ActionResult Index()
         {
-            var testdata = _documentService.GetAllDocuments();
+
             return View();
         }
 

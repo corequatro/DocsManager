@@ -2,13 +2,19 @@
     ViewBag.Title = "Home Page";
 }
 
-@Html.Partial("Js/DocsUploadPageCntrl")
-@Html.Partial("Js/FileUploadDirectivePartial")
+@Html.Partial("Js/HomePageCntrl")
+@Html.Partial("Filters/CustomFiltersJs")
+
+@Html.Partial("Directives/FileUploadDirectivePartial")
 
 
-<div ng-controller="DocsUploadPageCntrl">
-    {{helloIndexPage}}
-    <files-upload-control uploadfile-url="'@Url.Action("UploadDocument", "Files")'"
-                          removefile-url="'@Url.Action("DeleteFile", "Files")'">
-    </files-upload-control>
+<div ng-controller="HomePageCntrl">
+    <div class="container-fluid">
+        <div class="row">
+            <files-upload-control uploadfile-url="'@Url.Action("UploadDocument", "Documents")'"
+                                  removefile-url="'@Url.Action("DeleteFile", "Documents")'">
+            </files-upload-control>
+        </div>
+    </div>
+
 </div>

@@ -187,11 +187,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\FilesController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Documents\DocumentsFilterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1022,14 +1023,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Js\DocsUploadPageCntrl.cshtml" />
-    <Content Include="Views\Home\Js\FileUploadDirectivePartial.cshtml" />
+    <Content Include="Views\Home\Js\HomePageCntrl.cshtml" />
+    <Content Include="Views\Shared\Directives\FileUploadDirectivePartial.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Shared\LayoutJs.cshtml" />
+    <Content Include="Views\Shared\Filters\CustomFiltersJs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1049,17 +1050,13 @@
       <Project>{25a531e7-7eab-4a09-b3d0-c6a88a2b14fe}</Project>
       <Name>DocsManager.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DocsManager.IBll\DocsManager.IBll.csproj">
-      <Project>{ad613007-d717-405f-9c10-765aee41961b}</Project>
-      <Name>DocsManager.IBll</Name>
+    <ProjectReference Include="..\DocsManager.Dal\DocsManager.Dal.csproj">
+      <Project>{8f8762ce-6706-47b7-a6f7-f9b0c0b77c24}</Project>
+      <Name>DocsManager.Dal</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DocsManager.IDal\DocsManager.IRepository.csproj">
+    <ProjectReference Include="..\DocsManager.IDal\DocsManager.IDal.csproj">
       <Project>{27a38702-30d8-4859-8b97-19921dc383d7}</Project>
-      <Name>DocsManager.IRepository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DocsManager.Repository\DocsManager.Repository.csproj">
-      <Project>{bdb93483-a725-4066-aad9-f2a5f09fa581}</Project>
-      <Name>DocsManager.Repository</Name>
+      <Name>DocsManager.IDal</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

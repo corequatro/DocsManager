@@ -23,6 +23,7 @@ namespace DocsManager.Repository
         public async Task<TEntity> AddAsync(TEntity value)
         {
             value.Id = 0;
+            value.CreatedDate = DateTime.Now;
             var entity =  _context.Set<TEntity>().Add(value);
             await _context.SaveChangesAsync();
             return entity;
@@ -30,6 +31,7 @@ namespace DocsManager.Repository
 
         public async Task<TEntity> UpdateAsync(TEntity value)
         {
+            value.UpdatedDate = DateTime.Now;
             _context.Entry(value).State = EntityState.Modified;
             _context.SaveChanges();
             await _context.SaveChangesAsync();

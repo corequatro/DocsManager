@@ -1,7 +1,7 @@
 ﻿// //Document.cs
 // // Copyright (c) 2018 06 26All Rights Reserved
-// // Datascope, Bogdan Lyashenko
-// // bohdan.lyashenko@gmail.com
+// // Cq, Bogdan Lyashenko
+// // bogdan.lyashenko@gmail.com
 
 using System;
 using DocsManager.Domain.BaseEntities;
@@ -15,7 +15,7 @@ namespace DocsManager.Domain.Entities
         public string FileType { get; set; }
         public byte[] DocumentFile { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
     }
 }

@@ -1,13 +1,12 @@
 ﻿// //NinjectWebCommon.cs
 // // Copyright (c) 2018 06 27All Rights Reserved
-// // Datascope, Bogdan Lyashenko
-// // bohdan.lyashenko@gmail.com
+// // Cq, Bogdan Lyashenko
+// // bogdan.lyashenko@gmail.com
 
 using System;
 using System.Web;
-using System.Web.Optimization;
 using DocsManager.Bll;
-using DocsManager.IBll;
+using DocsManager.Bll.Implementation;
 using DocsManager.IDal;
 using DocsManager.Repository;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -52,6 +51,8 @@ namespace DocsManagerWebApp
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+
+              
                 RegisterRepositories(kernel);
                 RegisterServices(kernel);
                 return kernel;
@@ -70,6 +71,9 @@ namespace DocsManagerWebApp
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<HttpContextBase>().ToMethod(x => new HttpContextWrapper(HttpContext.Current));
+            kernel.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
+
+
             kernel.Bind<IDocumentService>().To<DocumentService>().InRequestScope();
         }
 

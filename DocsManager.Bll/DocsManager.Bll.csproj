@@ -30,7 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,7 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DocumentService.cs" />
+    <Compile Include="Dto\DocumentDto.cs" />
+    <Compile Include="Dto\DocumentsFilterDto.cs" />
+    <Compile Include="Implementation\DocumentService.cs" />
+    <Compile Include="IDocumentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -48,14 +58,14 @@
       <Project>{4597cc6c-0d84-4ed6-8601-856468dd232e}</Project>
       <Name>DocsManager.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DocsManager.IBll\DocsManager.IBll.csproj">
-      <Project>{ad613007-d717-405f-9c10-765aee41961b}</Project>
-      <Name>DocsManager.IBll</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DocsManager.IDal\DocsManager.IRepository.csproj">
+    <ProjectReference Include="..\DocsManager.IDal\DocsManager.IDal.csproj">
       <Project>{27a38702-30d8-4859-8b97-19921dc383d7}</Project>
-      <Name>DocsManager.IRepository</Name>
+      <Name>DocsManager.IDal</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

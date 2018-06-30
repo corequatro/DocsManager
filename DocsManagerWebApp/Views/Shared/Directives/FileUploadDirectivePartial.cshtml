@@ -1,0 +1,158 @@
+﻿<script type="text/ng-template" id="docsManager.filesTemplate">
+    <div class="row"><br /></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <div ngf-select ng-model="innerModel.selectedFile" class="form-control import" type="file">
+                    <span ng-show="innerModel.selectedFile==null">please select file</span>
+                    <span ng-show="innerModel.selectedFile!=null">{{innerModel.selectedFile.name| limitTo:20 }}</span>
+                </div>
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" ng-click="uploadFile()" ng-disabled="innerModel.selectedFile==null">upload file</button>
+                </span>
+
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div>
+    <div class="row" ng-hide="innerModel.selectedFile==null">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    {{innerModel.selectedFile.name}} <span class="badge">{{innerModel.selectedFile.size | convertsize}}</span>
+                </li>
+                <li class="list-group-item">
+                    last modified date <span class="badge">{{innerModel.selectedFile.lastModifiedDate | date : 'short'}}</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div ng-show="files.length==0">
+        no files
+    </div>
+
+    <div ng-show="files.length>0" class="scroll-block sm">
+        <table class="inner-table table table-condensed">
+            <thead>
+                <tr>
+                    <th>file name</th>
+                    <th>download</th>
+                    <th>remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="file in files">
+                    <td>
+                        {{file.Name | cutText:20 }}
+                    </td>
+                    <td>
+                        @*<a class="btn btn-primary" id="downloadFile_{{file.Id}}" href="@Url.Action("DownloadFile", "CarillionFiles")?fileId={{file.Id}}">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                            </a>*@
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" id="deleteFile_{{file.Id}}" ng- ng-click="deleteFile(file)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</script>
+
+
+<script type="text/javascript">
+    var app = angular.module('app');
+    app.directive('filesUploadControl', [
+        '$http', '$rootScope', 'Upload', '$timeout', function ($http, $rootScope, $upload, $timeout) {
+            return {
+                scope: {
+                    itemid: '=',
+                    getfilesUrl: '=',
+                    uploadfileUrl: '=',
+                    removefileUrl: '='
+                },
+                templateUrl: 'docsManager.filesTemplate',
+                link: function ($scope) {
+
+                    $scope.innerModel = { selectedFile: null };
+                    $scope.isOpen = false;
+                    $scope.hideInfo = function () {
+                        $scope.isOpen = false;
+                    }
+
+                    $scope.$watch('innerModel.selectedFile', function (value) {
+                        console.log(value);
+                    });
+
+                    $scope.switchFiles = function () {
+                        if (!$scope.isOpen) {
+                            $scope.openFiles();
+                        } else {
+                            $scope.isOpen = false;
+                        }
+                    }
+
+                    $scope.openFiles = function () {
+                        $http.get($scope.getfilesUrl, { params: { itemId: $scope.itemid } })
+                            .then(function (resp) {
+                                $scope.files = resp.data;
+                                $scope.isOpen = true;
+                            });
+                    }
+                    $scope.uploadFile = function () {
+                        $scope.files = $scope.innerModel.selectedFile;
+
+                        $upload.upload({
+                            url: $scope.uploadfileUrl,
+                            data: {
+                                file: $scope.files
+                            }
+                        }).then(function (response) {
+                            $timeout(function () {
+                                $scope.result = response.data;
+                            });
+                        }, function (response) {
+                            if (response.status > 0) {
+                                $scope.errorMsg = response.status + ': ' + response.data;
+                            }
+                        }, function (evt) {
+                        });
+
+                    };
+                    //$scope.uploadFile = function () {
+                    //    $upload.upload({
+                    //        url: $scope.uploadfileUrl,
+                    //        data: {
+                    //            file: $scope.innerModel.selectedFile
+
+                    //        }
+                    //    }).then(
+                    //        function (resp) {
+                    //            $scope.openFiles();
+                    //            $scope.innerModel.selectedFile = null;
+
+                    //        }
+                    //    );
+                    //}
+
+                    $scope.deleteFile = function (file) {
+                        $http.post($scope.removefileUrl, { fileId: file.Id, itemId: $scope.itemid }).then(function (resp) {
+                            $scope.openFiles();
+
+                        });
+                    }
+                    $scope.closeOverlay = function () {
+                        scope.isOpen = false;
+                    }
+
+                }
+
+            }
+        }
+    ]);
+</script>
