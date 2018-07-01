@@ -45,6 +45,8 @@
     <Compile Include="Entities\Document.cs" />
     <Compile Include="Logs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Verification\BuisnessLogic.cs" />
+    <Compile Include="Verification\ServiceException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

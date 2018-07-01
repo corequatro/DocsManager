@@ -13,5 +13,6 @@ namespace DocsManager.Bll
     {
         Task<IList<DocumentDto>> GetAllDocuments(DocumentsFilterDto filterDto);
         Task<DocumentDto> CreateDocument(DocumentDto document);
+    
     }
 }

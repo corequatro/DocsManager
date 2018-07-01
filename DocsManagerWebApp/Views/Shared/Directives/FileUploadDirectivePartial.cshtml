@@ -1,67 +1,88 @@
 ﻿<script type="text/ng-template" id="docsManager.filesTemplate">
-    <div class="row"><br /></div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="input-group">
-                <div ngf-select ng-model="innerModel.selectedFile" class="form-control import" type="file">
-                    <span ng-show="innerModel.selectedFile==null">please select file</span>
-                    <span ng-show="innerModel.selectedFile!=null">{{innerModel.selectedFile.name| limitTo:20 }}</span>
-                </div>
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button" ng-click="uploadFile()" ng-disabled="innerModel.selectedFile==null">upload file</button>
-                </span>
 
-            </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-    </div>
-    <div class="row" ng-hide="innerModel.selectedFile==null">
-        <div class="col-md-6">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    {{innerModel.selectedFile.name}} <span class="badge">{{innerModel.selectedFile.size | convertsize}}</span>
-                </li>
-                <li class="list-group-item">
-                    last modified date <span class="badge">{{innerModel.selectedFile.lastModifiedDate | date : 'short'}}</span>
-                </li>
-            </ul>
+    <style>
+        .thumb {
+            width: 24px;
+            height: 24px;
+            float: none;
+            position: relative;
+            top: 7px;
+        }
+
+        form .progress {
+            line-height: 15px;
+        }
+
+        
+
+        .progress {
+            display: inline-block;
+            width: 100px;
+            border: 3px groove #CCC;
+        }
+
+            .progress div {
+                font-size: smaller;
+                background: orange;
+                width: 0;
+            }
+    </style>
+ 
+    <button ngf-select="uploadFiles($files)" multiple
+            accept="*/*">
+        Select Files
+    </button>
+    <br>
+    <br>Files:
+    <ul>
+        <li ng-repeat="f in files" style="font:smaller">
+            {{f.name}}
+        </li>
+    </ul>
+    <span class="progress" ng-show="progress >= 0">
+        <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+    </span>
+    {{errorMsg}}
+
+
+    @*<div class="row"><br /></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <div ngf-select ng-model="innerModel.selectedFile" class="form-control import" type="file">
+                        <span ng-show="innerModel.selectedFile==null">please select file</span>
+                        <span ng-show="innerModel.selectedFile!=null">{{innerModel.selectedFile.name| limitTo:20 }}</span>
+                    </div>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" ng-click="uploadFile()" ng-disabled="innerModel.selectedFile==null">upload file</button>
+                    </span>
+
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+        </div>
+        <div class="row" ng-hide="innerModel.selectedFile==null">
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        {{innerModel.selectedFile.name}} <span class="badge">{{innerModel.selectedFile.size | convertsize}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        last modified date <span class="badge">{{innerModel.selectedFile.lastModifiedDate | date : 'short'}}</span>
+                    </li>
+                </ul>
+            </div>
+
         </div>
 
-    </div>
 
 
 
 
+        <div ng-show="files.length==0">
+            no files
+        </div>*@
 
-    <div ng-show="files.length==0">
-        no files
-    </div>
 
-    <div ng-show="files.length>0" class="scroll-block sm">
-        <table class="inner-table table table-condensed">
-            <thead>
-                <tr>
-                    <th>file name</th>
-                    <th>download</th>
-                    <th>remove</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="file in files">
-                    <td>
-                        {{file.Name | cutText:20 }}
-                    </td>
-                    <td>
-                        @*<a class="btn btn-primary" id="downloadFile_{{file.Id}}" href="@Url.Action("DownloadFile", "CarillionFiles")?fileId={{file.Id}}">
-                                <i class="fa fa-download" aria-hidden="true"></i>
-                            </a>*@
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger" id="deleteFile_{{file.Id}}" ng- ng-click="deleteFile(file)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 </script>
 
 
@@ -78,6 +99,30 @@
                 },
                 templateUrl: 'docsManager.filesTemplate',
                 link: function ($scope) {
+                    $scope.uploadFiles = function (files) {
+
+                        $scope.files = files;
+                        if (files && files.length) {
+                            $upload.upload({
+                                url: '@Url.Action("UploadMultiplyDocs", "Documents")',
+                                data: {
+                                    files: files
+                                }
+                            }).then(function (response) {
+                                $timeout(function () {
+                                    $scope.result = response.data;
+                                });
+                            }, function (response) {
+                                if (response.status > 0) {
+                                    $scope.errorMsg = response.status + ': ' + response.data;
+                                }
+                            }, function (evt) {
+                                $scope.progress = 
+                                    Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                            });
+                        }
+                    };
+
 
                     $scope.innerModel = { selectedFile: null };
                     $scope.isOpen = false;

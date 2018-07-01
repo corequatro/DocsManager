@@ -1022,12 +1022,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Js\HomePageCntrl.cshtml" />
+    <Content Include="Views\DocManager\Index.cshtml" />
+    <Content Include="Views\DocManager\Js\DocsManagerPageCntrl.cshtml" />
     <Content Include="Views\Shared\Directives\FileUploadDirectivePartial.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\LayoutJs.cshtml" />
     <Content Include="Views\Shared\Filters\CustomFiltersJs.cshtml" />
+    <Content Include="Views\Home\Js\HomePageCntrl.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

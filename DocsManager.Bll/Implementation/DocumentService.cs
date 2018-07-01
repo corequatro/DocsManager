@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DocsManager.Bll.Dto;
 using DocsManager.Domain.Entities;
+using DocsManager.Domain.Verification;
 using DocsManager.IDal;
 
 namespace DocsManager.Bll.Implementation
@@ -36,7 +37,8 @@ namespace DocsManager.Bll.Implementation
 
         public async Task<DocumentDto> CreateDocument(DocumentDto document)
         {
+            BusinessLogic.RequiresThat(document.FileSize <= 2e+8, "file size is too big");
             return (DocumentDto)await _documentRepository.AddAsync((Document)document);
         }
-    }
+ }
 }
