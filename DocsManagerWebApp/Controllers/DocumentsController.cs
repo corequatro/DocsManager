@@ -38,29 +38,24 @@ namespace DocsManagerWebApp.Controllers
         public async Task<ActionResult> UploadMultiplyDocs(IEnumerable<HttpPostedFileBase> files)
         {
             var docsList = new List<DocumentDto>();
-
-            var docxFormat = "50-4B-03-04-14-00-06-00";
-            var docFormat = "D0-CF-11-E0-A1-B1-1A-E1";
-
+            
             foreach (var file in files)
             {
                 using (BinaryReader binaryReader = new BinaryReader(file.InputStream))
                 {
-                    //Detect doc type.
                     var docType = DocFormatType.DetermineDocType(binaryReader);
-                    
                     ////Read fib base
                     //binaryReader.BaseStream.Position = 0x200;
                     //byte[] fibBase = binaryReader.ReadBytes(0x652);
-
-
+                    
                     byte[] binData = binaryReader.ReadBytes(file.ContentLength);
                     var createdDocument = await _documentService.CreateDocument(new DocumentDto
                     {
                         DocumentFile = binData,
                         FileName = file.FileName,
-                        FileType = file.ContentType
+                        FileType = docType.ToString()
                     });
+
                     docsList.Add(createdDocument);
                 }
             }

@@ -6,10 +6,17 @@
     <title>@ViewBag.Title - Docs manager app</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+  
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angularJs")
+    <script type="text/javascript" src="@Url.Content("~/Scripts/custom-scripts/toastr.js")"></script>
+    <link href="@Url.Content("~/Content/toastr.css")" rel="stylesheet">
+    @Html.Partial("LayoutJs")
+
 </head>
 
-<body ng-app="app">
+<body ng-app="app" ng-controller="LayoutCntrl">
+    @Html.Partial("AngularSetup")
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -23,8 +30,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </div>
         </div>

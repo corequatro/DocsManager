@@ -1,9 +1,29 @@
 ﻿
 <script type="text/javascript">
-    angular.module('app', ['ngFileUpload']).controller('HomePageCntrl', [
+    angular.module('app').controller('HomePageCntrl', [
         '$scope', '$http', '$rootScope', '$filter', '$timeout', function ($scope, $http, $rootScope, $filter, $timeout) {
-      
 
+            $scope.getfilesList = function () {
+                return $http({
+                    method: 'GET',
+                    url: '@Url.Action("GetDocumentsList", "Documents")'
+                }).then(function (resp) {
+                    $scope.filesFromDb = resp.data;
+                });
+            }
+
+            $scope.remove = function (file) {
+                $http.post('@Url.Action("DeleteFile", "Documents")', { documentId: file.Id }).then(
+                    function () {
+                        $rootScope.showSuccess("file removed successfully");
+                        $scope.getfilesList();
+                    });
+            };
+
+
+            $timeout(function () {
+                $scope.getfilesList();
+            });
         }
     ]);
 </script>

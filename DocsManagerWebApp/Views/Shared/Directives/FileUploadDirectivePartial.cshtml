@@ -1,90 +1,44 @@
 ﻿<script type="text/ng-template" id="docsManager.filesTemplate">
-
-    <style>
-        .thumb {
-            width: 24px;
-            height: 24px;
-            float: none;
-            position: relative;
-            top: 7px;
-        }
-
-        form .progress {
-            line-height: 15px;
-        }
-
-        
-
-        .progress {
-            display: inline-block;
-            width: 100px;
-            border: 3px groove #CCC;
-        }
-
-            .progress div {
-                font-size: smaller;
-                background: orange;
-                width: 0;
-            }
-    </style>
- 
-    <button ngf-select="uploadFiles($files)" multiple
-            accept="*/*">
-        Select Files
-    </button>
-    <br>
-    <br>Files:
-    <ul>
-        <li ng-repeat="f in files" style="font:smaller">
-            {{f.name}}
-        </li>
-    </ul>
-    <span class="progress" ng-show="progress >= 0">
-        <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
-    </span>
-    {{errorMsg}}
-
-
-    @*<div class="row"><br /></div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="input-group">
-                    <div ngf-select ng-model="innerModel.selectedFile" class="form-control import" type="file">
-                        <span ng-show="innerModel.selectedFile==null">please select file</span>
-                        <span ng-show="innerModel.selectedFile!=null">{{innerModel.selectedFile.name| limitTo:20 }}</span>
-                    </div>
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button" ng-click="uploadFile()" ng-disabled="innerModel.selectedFile==null">upload file</button>
-                    </span>
-
-                </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
-        </div>
-        <div class="row" ng-hide="innerModel.selectedFile==null">
-            <div class="col-md-6">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        {{innerModel.selectedFile.name}} <span class="badge">{{innerModel.selectedFile.size | convertsize}}</span>
-                    </li>
-                    <li class="list-group-item">
-                        last modified date <span class="badge">{{innerModel.selectedFile.lastModifiedDate | date : 'short'}}</span>
-                    </li>
-                </ul>
+    <div class="row"><br /></div>
+    <div class="row" ng-if="filesList.length == 0">
+        <div class="col-md-6">
+            <div class="btn btn-primary" type="file" ngf-select="prepareToUpload($files)" multiple>
+                select files
             </div>
-
         </div>
+    </div>
+    <div class="row"><br /></div>
+    <div class="progress" ng-show="progress >= 0 && filesList.length>0">
+        <div class="progress-bar" role="progressbar" ng-bind="progress + '%'" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+            <span class="sr-only">{{progress}}% complete</span>
+        </div>
+    </div>
 
-
-
-
-
-        <div ng-show="files.length==0">
-            no files
-        </div>*@
-
-
+    <div class="row" ng-repeat="file in filesList">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    {{file.name}} <span class="badge">{{file.size | convertsize}}</span>
+                </li>
+                <li class="list-group-item">
+                    last modified date <span class="badge">{{file.lastModifiedDate | date : 'short'}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-2">
+            <button type="button"
+                    ng-click="remove(file)"
+                    class="btn btn-danger">
+                <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="btn btn-primary" ng-click="uploadFiles()" ng-if="filesList.length>0">upload files <span class="badge">{{filesList.length}}</span></div>
+        </div>
+    </div>
 </script>
-
 
 <script type="text/javascript">
     var app = angular.module('app');
@@ -99,9 +53,14 @@
                 },
                 templateUrl: 'docsManager.filesTemplate',
                 link: function ($scope) {
-                    $scope.uploadFiles = function (files) {
 
-                        $scope.files = files;
+                    $scope.filesList = [];
+                    $scope.prepareToUpload = function(files) {
+                        $scope.filesList = files;
+                    }
+
+                    $scope.uploadFiles = function () {
+                        var files = $scope.filesList;
                         if (files && files.length) {
                             $upload.upload({
                                 url: '@Url.Action("UploadMultiplyDocs", "Documents")',
@@ -109,91 +68,29 @@
                                     files: files
                                 }
                             }).then(function (response) {
+                                $scope.filesList = [];
                                 $timeout(function () {
+                                    $rootScope.showSuccess('files uploaded');
                                     $scope.result = response.data;
-                                });
+                                 });
                             }, function (response) {
                                 if (response.status > 0) {
                                     $scope.errorMsg = response.status + ': ' + response.data;
+                                    $rootScope.showError(errorMsg);
                                 }
                             }, function (evt) {
-                                $scope.progress = 
+                                $scope.progress =
                                     Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                             });
                         }
                     };
 
-
-                    $scope.innerModel = { selectedFile: null };
-                    $scope.isOpen = false;
-                    $scope.hideInfo = function () {
-                        $scope.isOpen = false;
+                    $scope.remove = function (file) {
+                        var index = $scope.filesList.indexOf(file);
+                        $scope.filesList.splice(index, 1);
+                        $rootScope.showSuccess(file.name + ' removed');
                     }
 
-                    $scope.$watch('innerModel.selectedFile', function (value) {
-                        console.log(value);
-                    });
-
-                    $scope.switchFiles = function () {
-                        if (!$scope.isOpen) {
-                            $scope.openFiles();
-                        } else {
-                            $scope.isOpen = false;
-                        }
-                    }
-
-                    $scope.openFiles = function () {
-                        $http.get($scope.getfilesUrl, { params: { itemId: $scope.itemid } })
-                            .then(function (resp) {
-                                $scope.files = resp.data;
-                                $scope.isOpen = true;
-                            });
-                    }
-                    $scope.uploadFile = function () {
-                        $scope.files = $scope.innerModel.selectedFile;
-
-                        $upload.upload({
-                            url: $scope.uploadfileUrl,
-                            data: {
-                                file: $scope.files
-                            }
-                        }).then(function (response) {
-                            $timeout(function () {
-                                $scope.result = response.data;
-                            });
-                        }, function (response) {
-                            if (response.status > 0) {
-                                $scope.errorMsg = response.status + ': ' + response.data;
-                            }
-                        }, function (evt) {
-                        });
-
-                    };
-                    //$scope.uploadFile = function () {
-                    //    $upload.upload({
-                    //        url: $scope.uploadfileUrl,
-                    //        data: {
-                    //            file: $scope.innerModel.selectedFile
-
-                    //        }
-                    //    }).then(
-                    //        function (resp) {
-                    //            $scope.openFiles();
-                    //            $scope.innerModel.selectedFile = null;
-
-                    //        }
-                    //    );
-                    //}
-
-                    $scope.deleteFile = function (file) {
-                        $http.post($scope.removefileUrl, { fileId: file.Id, itemId: $scope.itemid }).then(function (resp) {
-                            $scope.openFiles();
-
-                        });
-                    }
-                    $scope.closeOverlay = function () {
-                        scope.isOpen = false;
-                    }
 
                 }
 

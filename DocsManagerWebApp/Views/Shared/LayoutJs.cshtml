@@ -1,1 +1,47 @@
-﻿
+﻿<script type="text/javascript">
+    var app = angular.module('app', ['ngFileUpload']);
+    angular.module('app').controller('LayoutCntrl', [
+        '$scope', '$http', '$rootScope', '$filter', '$timeout', function ($scope, $http, $rootScope, $filter, $timeout) {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "400",
+                "hideDuration": "1000",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+            $rootScope.showError = function (title, content) {
+                if (!title) {
+                    toastr.error(content);
+                } else {
+                    toastr.error(content, title);
+                }
+            }
+
+            $rootScope.showSuccess = function (title, content) {
+                if (!title) {
+                    toastr.success(content);
+                } else {
+                    toastr.success(content, title);
+                }
+            }
+            $rootScope.showWarning = function (title, content) {
+                if (!title) {
+                    toastr.warning(content);
+                } else {
+                    toastr.warning(content, title);
+                }
+            }
+        }
+    ]);
+</script>
