@@ -83,8 +83,9 @@ namespace DocsManagerWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> DeleteFile(int documentId)
+        public async Task<ActionResult> DeleteDocument(int documentId)
         {
+            await _documentService.DeleteDocument(documentId);
             return GetJson(new
             {
                 Success = true,

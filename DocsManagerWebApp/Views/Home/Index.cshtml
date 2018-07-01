@@ -32,19 +32,11 @@
                 <td>{{file.FileSize}}</td>
                 <td>{{file.FileType}}</td>
                 <td>
-                    <button id="edit_{{resolution.Id}}"
-                            type="button"
-                            class="btn btn-warning"
-                            ng-if="resolution.IsInUse === false"
-                            ng-click="showEditResolution(resolution)">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </button>
                     <button type="button"
-                            ng-click="remove(file)"
+                            ng-click="removeDocument(file)"
                             class="btn btn-danger">
                         <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
                     </button>
-
                 </td>
             </tr>
         </tbody>

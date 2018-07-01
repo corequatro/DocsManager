@@ -40,5 +40,10 @@ namespace DocsManager.Bll.Implementation
             BusinessLogic.RequiresThat(document.FileSize <= 2e+8, "file size is too big");
             return (DocumentDto)await _documentRepository.AddAsync((Document)document);
         }
- }
+
+        public async Task DeleteDocument(int documentId)
+        {
+            await _documentRepository.RemoveAsync(documentId);
+        }
+    }
 }

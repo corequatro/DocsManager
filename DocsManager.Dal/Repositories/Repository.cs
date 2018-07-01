@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
- 
+
 using System.Text;
 using System.Threading.Tasks;
 using DocsManager.Dal;
@@ -24,7 +24,7 @@ namespace DocsManager.Repository
         {
             value.Id = 0;
             value.CreatedDate = DateTime.Now;
-            var entity =  _context.Set<TEntity>().Add(value);
+            var entity = _context.Set<TEntity>().Add(value);
             await _context.SaveChangesAsync();
             return entity;
         }
@@ -40,7 +40,7 @@ namespace DocsManager.Repository
 
         public async Task RemoveAsync(int id)
         {
-            var entity = await _context.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
+            var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(e => e.Id == id);
             _context.Set<TEntity>().Remove(entity);
             await _context.SaveChangesAsync();
         }

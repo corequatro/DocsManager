@@ -12,8 +12,8 @@
                 });
             }
 
-            $scope.remove = function (file) {
-                $http.post('@Url.Action("DeleteFile", "Documents")', { documentId: file.Id }).then(
+            $scope.removeDocument = function (file) {
+                $http.post('@Url.Action("DeleteDocument", "Documents")', { documentId: file.Id }).then(
                     function () {
                         $rootScope.showSuccess("file removed successfully");
                         $scope.getfilesList();

@@ -11,6 +11,7 @@ namespace DocsManager.IDal
     {
         Task<TEntity> AddAsync(TEntity value);
         Task<TEntity> UpdateAsync(TEntity value);
+        Task RemoveAsync(int id);
         IQueryable<TEntity> GetItemsQuery();
     }
 }
