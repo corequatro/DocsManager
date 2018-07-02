@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-
-using System.Text;
 using System.Threading.Tasks;
-using DocsManager.Dal;
 using DocsManager.Domain.BaseEntities;
 using DocsManager.IDal;
 
-namespace DocsManager.Repository
+namespace DocsManager.Dal.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IIdEntity
     {

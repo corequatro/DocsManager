@@ -7,13 +7,13 @@ namespace DocsManager.Dal
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InitMigration : IMigrationMetadata
+    public sealed partial class Logs : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Logs));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806262047367_InitMigration"; }
+            get { return "201807021543109_Logs"; }
         }
         
         string IMigrationMetadata.Source

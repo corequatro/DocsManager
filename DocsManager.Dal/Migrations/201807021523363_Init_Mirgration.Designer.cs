@@ -7,13 +7,13 @@ namespace DocsManager.Dal
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UpdateTimeNullable : IMigrationMetadata
+    public sealed partial class Init_Mirgration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateTimeNullable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init_Mirgration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806301744324_UpdateTimeNullable"; }
+            get { return "201807021523363_Init_Mirgration"; }
         }
         
         string IMigrationMetadata.Source
