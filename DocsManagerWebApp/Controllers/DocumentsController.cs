@@ -1,8 +1,12 @@
-﻿using System;
+﻿// //DocumentsController.cs
+// // Copyright (c) 2018 06 26All Rights Reserved
+// // Cq, Bogdan Lyashenko
+// // bogdan.lyashenko@gmail.com
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Mime;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
