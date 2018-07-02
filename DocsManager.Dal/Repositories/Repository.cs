@@ -45,6 +45,11 @@ namespace DocsManager.Repository
             await _context.SaveChangesAsync();
         }
 
+
+
+
+Visual Studio Installer
+
         public async Task<TEntity> GetItemByIdAsync(int id)
         {
             return await _context.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);

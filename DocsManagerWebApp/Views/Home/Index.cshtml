@@ -11,8 +11,7 @@
 <div ng-controller="HomePageCntrl">
     <div class="container-fluid">
         <div class="row">
-            <files-upload-control uploadfile-url="'@Url.Action("UploadDocument", "Documents")'"
-                                  removefile-url="'@Url.Action("DeleteFile", "Documents")'">
+            <files-upload-control refresh="getfilesList()">
             </files-upload-control>
         </div>
     </div>
