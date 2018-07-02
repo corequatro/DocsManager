@@ -37,13 +37,18 @@ namespace DocsManager.Bll.Implementation
 
         public async Task<DocumentDto> CreateDocument(DocumentDto document)
         {
-            BusinessLogic.RequiresThat(document.FileSize <= 2e+8, "file size is too big");
+            BusinessLogic.RequiresThat(document.FileSize <= 2e+8, "file size must be less than 200mb");
             return (DocumentDto)await _documentRepository.AddAsync((Document)document);
         }
 
         public async Task DeleteDocument(int documentId)
         {
             await _documentRepository.RemoveAsync(documentId);
+        }
+
+        public async Task<DocumentDto> GetDocumentByFileId(int fileId)
+        {
+            return (DocumentDto)await _documentRepository.GetItemsQuery().FirstOrDefaultAsync(i => i.Id.Equals(fileId));
         }
     }
 }

@@ -199,6 +199,11 @@
     </Compile>
     <Compile Include="Models\Documents\DocumentsFilterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\DocsManagerResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocsManagerResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -1031,8 +1036,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\DocManager\Index.cshtml" />
-    <Content Include="Views\DocManager\Js\DocsManagerPageCntrl.cshtml" />
     <Content Include="Views\Shared\Directives\FileUploadDirectivePartial.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\LayoutJs.cshtml" />
@@ -1070,6 +1073,13 @@
       <Project>{27a38702-30d8-4859-8b97-19921dc383d7}</Project>
       <Name>DocsManager.IDal</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DocsManagerResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DocsManagerResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

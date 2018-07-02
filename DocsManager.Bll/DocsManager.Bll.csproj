@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Dto\DocumentDto.cs" />
     <Compile Include="Dto\DocumentsFilterDto.cs" />
+    <Compile Include="Dto\DocumentTypesEnum.cs" />
     <Compile Include="Implementation\DocumentService.cs" />
     <Compile Include="IDocumentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,6 +13,7 @@ namespace DocsManager.Domain.Entities
         public int Id { get; set; }
         public string FileName { get; set; }
         public string FileType { get; set; }
+        public int FileSize { get; set; }
         public byte[] DocumentFile { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }

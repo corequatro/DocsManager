@@ -15,7 +15,7 @@ namespace DocsManager.Bll.Dto
         public string CreatedBy { get; set; }
         public string FileName { get; set; }
         public string FileType { get; set; }
-        public long FileSize { get; set; }
+        public int FileSize { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
@@ -29,7 +29,7 @@ namespace DocsManager.Bll.Dto
                 FileName = documentDto.FileName,
                 FileType = documentDto.FileType,
                 CreatedBy = documentDto.CreatedBy,
-
+                FileSize = documentDto.FileSize
             };
         }
 
