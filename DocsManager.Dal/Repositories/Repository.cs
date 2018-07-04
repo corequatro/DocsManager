@@ -9,6 +9,8 @@ namespace DocsManager.Dal.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IIdEntity
     {
+
+        //TODO https://nickstips.wordpress.com/2011/07/16/dependency-injection-ninject-registering-two-services-to-the-same-instance/
         private readonly DocsManagerDbContext _context;
 
         public Repository(DocsManagerDbContext context)

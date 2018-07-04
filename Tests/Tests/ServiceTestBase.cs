@@ -15,11 +15,9 @@ using DocsManager.Dal;
 using DocsManager.Dal.Repositories;
 using DocsManager.Domain.Entities;
 using DocsManager.IDal;
-using DocsManagerWebApp.App_Start;
 using Ninject;
 using Ninject.Web.Common;
 using NUnit.Framework;
-using Tests.Setup;
 
 namespace Tests.Tests
 {
@@ -35,8 +33,6 @@ namespace Tests.Tests
         [SetUp]
         public void ControllerTestBaseSetUp()
         {
-           
-
             var connectionString = ConfigurationManager.ConnectionStrings["DocsManager_Test"].ConnectionString;
             var connectionBuilder = new SqlConnectionStringBuilder(connectionString);
             connectionBuilder.InitialCatalog = TestDataBase;
@@ -44,21 +40,19 @@ namespace Tests.Tests
 
             DropDatabase();
             CreateDatabase();
+            var kernel = new StandardKernel();
+            kernel.Bind<IDocumentService>().To<DocumentService>().InRequestScope();
+            kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
+            _kernel = kernel;
             Context = new DocsManagerDbContext(
                 new SqlConnection(TestDataBaseConnectionString));
-            var kernel = new StandardKernel();
-            
-            kernel.Rebind<DocsManagerDbContext>().ToSelf().InRequestScope();
-            kernel.Rebind<IDocumentService>().To<DocumentService>().InRequestScope();
-            kernel.Rebind(typeof(IRepository<>)).To(typeof(Repository<>));
-            _kernel = kernel;
+
         }
-        
+
 
         [TearDown]
         public void ControllerTestBaseTearDown()
         {
-            NinjectWebCommon.Stop();
             Context.Dispose();
         }
 

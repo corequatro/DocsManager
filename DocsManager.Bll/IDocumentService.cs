@@ -6,6 +6,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DocsManager.Bll.Dto;
+using DocsManager.Domain.DocumentTypes;
 
 namespace DocsManager.Bll
 {
@@ -13,6 +14,7 @@ namespace DocsManager.Bll
     {
         Task<IList<DocumentDto>> GetAllDocuments(DocumentsFilterDto filterDto);
         Task<DocumentDto> CreateDocument(DocumentDto document);
+        Task<BaseDocument> CreateDocument(BaseDocument document);
         Task DeleteDocument(int documentId);
         Task<DocumentDto> GetDocumentByFileId(int fileId);
     }

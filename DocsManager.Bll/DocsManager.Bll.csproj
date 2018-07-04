@@ -49,11 +49,9 @@
   <ItemGroup>
     <Compile Include="Dto\DocumentDto.cs" />
     <Compile Include="Dto\DocumentsFilterDto.cs" />
-    <Compile Include="Dto\DocumentTypesEnum.cs" />
     <Compile Include="Implementation\DocumentService.cs" />
     <Compile Include="IDocumentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\DocFormatType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DocsManager.Domain\DocsManager.Domain.csproj">
@@ -66,7 +64,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

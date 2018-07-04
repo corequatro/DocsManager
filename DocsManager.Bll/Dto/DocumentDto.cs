@@ -42,7 +42,6 @@ namespace DocsManager.Bll.Dto
                 FileName = documentDto.FileName,
                 FileType = documentDto.FileType,
                 CreatedBy = documentDto.CreatedBy
-
             };
         }
     }

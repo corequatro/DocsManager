@@ -12,8 +12,11 @@ using System.Web;
 using System.Web.Mvc;
 using DocsManager.Bll;
 using DocsManager.Bll.Dto;
-using DocsManager.Bll.Utils;
+using DocsManagerWebApp.Factories;
 using DocsManagerWebApp.Models.Documents;
+using DocumentFormat.OpenXml.ExtendedProperties;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace DocsManagerWebApp.Controllers
 {
@@ -40,23 +43,18 @@ namespace DocsManagerWebApp.Controllers
 
             foreach (var file in files)
             {
-                using (BinaryReader binaryReader = new BinaryReader(file.InputStream))
-                {
-                    var docType = DocFormatHelper.DetermineDocType(binaryReader);
-                    byte[] binData = binaryReader.ReadBytes(file.ContentLength);
-                    var createdDocument = await _documentService.CreateDocument(new DocumentDto
-                    {
-                        DocumentFile = binData,
-                        FileName = file.FileName,
-                        FileType = docType.ToString(),
-                        FileSize = file.ContentLength
-                    });
+              
+                var document = DocumentFactory.DetermineDocType(file);
+                var documentCreated = await _documentService.CreateDocument(document);
 
-                    docsList.Add(createdDocument);
-                }
+
+
+               
             }
             return GetJson(docsList);
         }
+
+
 
         [HttpGet]
         public async Task<ActionResult> DownloadDocument(int fileId)

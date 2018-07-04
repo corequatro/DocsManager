@@ -48,6 +48,8 @@ namespace DocsManager.Bll.Implementation
 
         public async Task<DocumentDto> GetDocumentByFileId(int fileId)
         {
+            var test =await _documentRepository.GetItemsQuery().FirstOrDefaultAsync(i => i.Id.Equals(fileId));
+            var lens = test.DocumentFile.Length;
             return (DocumentDto)await _documentRepository.GetItemsQuery().FirstOrDefaultAsync(i => i.Id.Equals(fileId));
         }
     }

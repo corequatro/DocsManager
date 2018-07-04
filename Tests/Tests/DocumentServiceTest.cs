@@ -6,6 +6,7 @@
 
 
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using DocsManager.Bll;
 using DocsManager.Bll.Dto;
 using DocsManager.IDal;
@@ -25,11 +26,15 @@ namespace Tests.Tests
         public void DocumentServiceSetup()
         {
             _docService = _kernel.Get<IDocumentService>();
+          
         }
 
         [Test]
         public async Task CreateDocument_ByDocumentDto_CorrectRecordInDbCreated()
         {
+           
+
+        
             var document = await _docService.CreateDocument(new DocumentDto()
             {
                 FileName = "file",
@@ -40,11 +45,11 @@ namespace Tests.Tests
             Assert.IsTrue(true);
         }
 
-        [TearDown]
-        public void TearDown()
-        {
-            Context.Documents.RemoveRange(Context.Documents);
-            Context.SaveChanges();
-        }
+        //[TearDown]
+        //public void TearDown()
+        //{
+        //    Context.Documents.RemoveRange(Context.Documents);
+        //    Context.SaveChanges();
+        //}
     }
 }
