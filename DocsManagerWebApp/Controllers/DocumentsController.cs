@@ -44,7 +44,7 @@ namespace DocsManagerWebApp.Controllers
                 await _documentService.CreateDocumentAsync(document);
             }
 
-            return ReturnSuccess();
+            return JsonSuccess();
         }
 
         [HttpGet]
@@ -65,7 +65,7 @@ namespace DocsManagerWebApp.Controllers
         public async Task<ActionResult> DeleteDocument(int documentId)
         {
             await _documentService.DeleteDocumentAsync(documentId);
-            return ReturnSuccess();
+            return JsonSuccess();
         }
     }
 }

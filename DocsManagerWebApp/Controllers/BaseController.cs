@@ -28,7 +28,7 @@ namespace DocsManagerWebApp.Controllers
 
         }
 
-        protected ActionResult ReturnSuccess()
+        protected ActionResult JsonSuccess()
         {
             return GetJson(new { Success = true });
         }
