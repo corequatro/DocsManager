@@ -13,6 +13,7 @@ using DocsManager.Bll.Dto;
 using DocsManager.Bll.Implementation;
 using DocsManager.Dal;
 using DocsManager.Dal.Repositories;
+using DocsManager.Domain.DocumentTypes;
 using DocsManager.Domain.Entities;
 using DocsManager.IDal;
 using Ninject;
@@ -76,7 +77,7 @@ namespace Tests.Tests
                     CreatedBy = "test",
                     CreatedDate = DateTime.Now,
                     DocumentFile = docBytes,
-                    FileType = DocumentTypesEnum.Doc.ToString(),
+                    FileType = DocumentTypesEnum.Doc,
                     FileName = "hello.doc"
                 });
                 context.SaveChanges();

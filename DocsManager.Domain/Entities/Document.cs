@@ -5,6 +5,7 @@
 
 using System;
 using DocsManager.Domain.BaseEntities;
+using DocsManager.Domain.DocumentTypes;
 
 namespace DocsManager.Domain.Entities
 {
@@ -12,7 +13,7 @@ namespace DocsManager.Domain.Entities
     {
         public int Id { get; set; }
         public string FileName { get; set; }
-        public string FileType { get; set; }
+        public DocumentTypesEnum FileType { get; set; }
         public int FileSize { get; set; }
         public byte[] DocumentFile { get; set; }
         public DateTime CreatedDate { get; set; }

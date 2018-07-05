@@ -14,7 +14,7 @@ namespace DocsManager.Bll.Dto
         public byte[] DocumentFile { get; set; }
         public string CreatedBy { get; set; }
         public string FileName { get; set; }
-        public string FileType { get; set; }
+        public DocumentTypesEnum FileType { get; set; }
         public int FileSize { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }

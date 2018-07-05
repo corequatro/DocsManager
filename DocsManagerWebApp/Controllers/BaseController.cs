@@ -25,6 +25,12 @@ namespace DocsManagerWebApp.Controllers
                 DateFormatHandling = DateFormatHandling.IsoDateFormat,
                 DateTimeZoneHandling = DateTimeZoneHandling.Local
             }));
+
+        }
+
+        protected ActionResult ReturnSuccess()
+        {
+            return GetJson(new { Success = true });
         }
     }
 }

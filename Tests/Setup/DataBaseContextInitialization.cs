@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Text;
 using DocsManager.Bll.Dto;
 using DocsManager.Dal;
+using DocsManager.Domain.DocumentTypes;
 using DocsManager.Domain.Entities;
 using NUnit.Framework;
 
@@ -52,7 +53,7 @@ namespace Tests.Setup
                     CreatedBy = "test",
                     CreatedDate = DateTime.Now,
                     DocumentFile = docBytes,
-                    FileType = DocumentTypesEnum.Doc.ToString(),
+                    FileType = DocumentTypesEnum.Doc,
                     FileName = "hello.doc"
                 });
                 context.SaveChanges();

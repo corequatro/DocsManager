@@ -12,10 +12,9 @@ namespace DocsManager.Bll
 {
     public interface IDocumentService
     {
-        Task<IList<DocumentDto>> GetAllDocuments(DocumentsFilterDto filterDto);
-        Task<DocumentDto> CreateDocument(DocumentDto document);
-        Task<BaseDocument> CreateDocument(BaseDocument document);
-        Task DeleteDocument(int documentId);
-        Task<DocumentDto> GetDocumentByFileId(int fileId);
+        Task<IList<DocumentDto>> GetAllDocumentsAsync(DocumentsFilterDto filterDto);
+        Task CreateDocumentAsync(BaseDocument document);
+        Task DeleteDocumentAsync(int documentId);
+        Task<DocumentDto> GetDocumentByFileIdAsyncTask(int fileId);
     }
 }

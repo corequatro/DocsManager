@@ -8,7 +8,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using DocsManager.Bll.Dto;
+using DocsManager.Domain.DocumentTypes;
 using DocsManager.Domain.Entities;
+using DocsManager.Domain.Extensions;
 using DocsManager.Domain.Verification;
 using DocsManager.IDal;
 
@@ -23,8 +25,7 @@ namespace DocsManager.Bll.Implementation
             _documentRepository = documentRepository;
         }
 
-
-        public async Task<IList<DocumentDto>> GetAllDocuments(DocumentsFilterDto filterDto)
+        public async Task<IList<DocumentDto>> GetAllDocumentsAsync(DocumentsFilterDto filterDto)
         {
             return await _documentRepository.GetItemsQuery().Select(i => new DocumentDto
             {
@@ -35,22 +36,22 @@ namespace DocsManager.Bll.Implementation
             }).ToListAsync();
         }
 
-        public async Task<DocumentDto> CreateDocument(DocumentDto document)
+        public async Task CreateDocumentAsync(BaseDocument document)
         {
             BusinessLogic.RequiresThat(document.FileSize <= 2e+8, "file size must be less than 200mb");
-            return (DocumentDto)await _documentRepository.AddAsync((Document)document);
+            await _documentRepository.AddAsync(document.ConvertToDocumentEntityType());
         }
 
-        public async Task DeleteDocument(int documentId)
+        public async Task DeleteDocumentAsync(int documentId)
         {
             await _documentRepository.RemoveAsync(documentId);
         }
 
-        public async Task<DocumentDto> GetDocumentByFileId(int fileId)
-        {
-            var test =await _documentRepository.GetItemsQuery().FirstOrDefaultAsync(i => i.Id.Equals(fileId));
-            var lens = test.DocumentFile.Length;
-            return (DocumentDto)await _documentRepository.GetItemsQuery().FirstOrDefaultAsync(i => i.Id.Equals(fileId));
-        }
+        //public async Task<BaseDocument> GetDocumentByFileId(int fileId)
+        //{
+        //    return  await _documentRepository.GetItemsQuery().FirstOrDefaultAsync(i => i.Id.Equals(fileId));
+        //}
+
+      
     }
 }

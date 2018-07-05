@@ -3,13 +3,14 @@
 // //  Bogdan Lyashenko
 // // bogdan.lyashenko@gmail.com
 
-namespace DocsManager.Bll.Dto
+namespace DocsManager.Domain.Entities
 {
     public enum DocumentTypesEnum
     {
+        WrongFormat = 0,
         Doc = 1,
         Docx = 2,
         Rtf = 3,
-        WrongFormat = 0
+
     }
 }

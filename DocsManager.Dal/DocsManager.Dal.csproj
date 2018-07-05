@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201807021948392_FileSizeFieldMigration.Designer.cs">
       <DependentUpon>201807021948392_FileSizeFieldMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807052237108_FileTypeAsEnum.cs" />
+    <Compile Include="Migrations\201807052237108_FileTypeAsEnum.Designer.cs">
+      <DependentUpon>201807052237108_FileTypeAsEnum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
   </ItemGroup>
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807021948392_FileSizeFieldMigration.resx">
       <DependentUpon>201807021948392_FileSizeFieldMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807052237108_FileTypeAsEnum.resx">
+      <DependentUpon>201807052237108_FileTypeAsEnum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

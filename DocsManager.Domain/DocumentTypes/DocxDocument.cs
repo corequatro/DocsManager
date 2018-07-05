@@ -3,8 +3,7 @@
 // //  Bogdan Lyashenko
 // // bogdan.lyashenko@gmail.com
 
-using System.IO;
-using DocsManager.Bll.Dto;
+using DocsManager.Domain.Entities;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Packaging;
 
@@ -12,40 +11,48 @@ namespace DocsManager.Domain.DocumentTypes
 {
     public class DocxDocument : BaseDocument
     {
+        public string Application { get; set; }
+        public string Company { get; set; }
+        public string Manager { get; set; }
+        
         public override void ProcessDocument()
         {
-            var docStream = new MemoryStream();
-            file.InputStream.CopyTo(docStream);
+            WordprocessingDocument wordprocessingDocument = WordprocessingDocument.Open(FileStream, true);
+            if (wordprocessingDocument.ExtendedFilePropertiesPart == null)
+                wordprocessingDocument.AddExtendedFilePropertiesPart();
 
 
-            WordprocessingDocument wordprocessingDocument =
-                WordprocessingDocument.Open(docStream, true);
+            AddExtraInfo(wordprocessingDocument);
+            FillDocumentSpecificInfo(wordprocessingDocument);
+            wordprocessingDocument.ExtendedFilePropertiesPart.Properties.Save();
+            wordprocessingDocument.Close();
+            FileStream.Position = 0;
+            DocumentFile = FileStream.ToArray();
+            FileType = DocumentTypesEnum.Docx;
+            FileStream.Close();
+        }
 
-            wordprocessingDocument.ExtendedFilePropertiesPart.Properties.Company.Text = "fluffysoft";
+        private void FillDocumentSpecificInfo(WordprocessingDocument wordprocessingDocument)
+        {
+            Application = wordprocessingDocument.ExtendedFilePropertiesPart.Properties.Application.Text;
+            Company = wordprocessingDocument.ExtendedFilePropertiesPart.Properties.Company.Text;
+            Manager = wordprocessingDocument.ExtendedFilePropertiesPart.Properties.Manager.Text;
+        }
+
+        private static void AddExtraInfo(WordprocessingDocument wordprocessingDocument)
+        {
+            wordprocessingDocument.ExtendedFilePropertiesPart.Properties.Company = new Company
+            {
+                Text = "Fluffysoft company"
+            };
             wordprocessingDocument.ExtendedFilePropertiesPart.Properties.Manager = new Manager
             {
                 Text = "Billy Gates"
             };
-            wordprocessingDocument.ExtendedFilePropertiesPart.Properties.Save();
-            wordprocessingDocument.Close();
-            docStream.Position = 0;
-
-            using (MemoryStream memoryStream = new MemoryStream())
+            wordprocessingDocument.ExtendedFilePropertiesPart.Properties.Application = new Application
             {
-                docStream.CopyTo(memoryStream);
-                var binData = memoryStream.ToArray();
-                var docType = DocFormatHelper.DetermineDocType(binaryReader);
-                var createdDocument = await _documentService.CreateDocument(new DocumentDto
-                {
-                    DocumentFile = binData,
-                    FileName = file.FileName,
-                    FileType = "Docx",
-                    FileSize = file.ContentLength
-                });
-
-                docsList.Add(createdDocument);
-            }
-
+                Text = "docs manager app"
+            };
         }
     }
 }
