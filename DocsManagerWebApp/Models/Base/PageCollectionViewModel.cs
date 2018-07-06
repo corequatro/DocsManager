@@ -3,9 +3,7 @@
 // //  Bogdan Lyashenko
 // // bogdan.lyashenko@gmail.com
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DocsManagerWebApp.Models.Base
 {
@@ -24,10 +22,5 @@ namespace DocsManagerWebApp.Models.Base
         }
         public int Count { get; }
         public ICollection<T> Items { get; }
-
-        public PageCollectionViewModel<TX> Convert<TX>(Func<T, TX> convertFunc)
-        {
-            return new PageCollectionViewModel<TX>(Items.Select(convertFunc).ToList(), Count);
-        }
     }
 }

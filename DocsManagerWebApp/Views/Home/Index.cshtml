@@ -31,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="file in filesFromDb">
+                <tr ng-repeat="file in files">
                     <td>{{file.FileName | cutextension}}</td>
                     <td>{{file.FileSize | convertsize}}</td>
                     <td>{{file.FileType | converttype}}</td>
@@ -56,6 +56,15 @@
                 </tr>
             </tbody>
         </table>
-    </div>
 
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group" role="group" ng-repeat="page in pages">
+                <button type="button" ng-class="page == currentPage ? 'btn btn-primary': 'btn btn-default'" ng-click="selectPage(page)">{{page}}</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">total items count&nbsp;<span class="badge">{{filesCount}}</span></button>
+
+            </div>
+        </div>
+    </div>
 </div>
