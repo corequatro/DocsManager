@@ -138,6 +138,10 @@
   <data name="DocumentCreationDate_tableLabel" xml:space="preserve">
     <value>created</value>
   </data>
+  <data name="PagesCount_label" xml:space="preserve">
+    <value>total items count</value>
+  </data>
+  
   <data name="FileType_tableLabel" xml:space="preserve">
     <value>file type</value>
   </data>

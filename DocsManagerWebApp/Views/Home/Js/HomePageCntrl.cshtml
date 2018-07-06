@@ -5,13 +5,16 @@
             $scope.pages = [];
             $scope.itemsOnPage = 5;
             $scope.currentPage = 1;
+            $scope.selectPage = function (pageNumber) {
+                if (pageNumber !== $scope.currentPage) {
+                    $scope.currentPage = pageNumber;
+                    $scope.getfilesList();
+                }
 
-            $scope.selectPage = function(pageNumber) {
-                $scope.currentPage = pageNumber;
-                $scope.getfilesList();
             }
 
             $scope.getfilesList = function () {
+                $rootScope.showLoader();
                 return $http({
                     method: 'GET',
                     url: '@Url.Action("GetDocumentsList", "Documents")',
@@ -22,28 +25,17 @@
                 }).then(function (resp) {
                     $scope.files = resp.data.Items;
                     $scope.filesCount = resp.data.Count;
-                    var pagesCount = 0;
-                    $scope.pages = [];
-                    if ($scope.filesCount / $scope.itemsOnPage >= 0) {
-                        pagesCount = Math.floor($scope.filesCount / $scope.itemsOnPage);
-                    } else {
-                        pagesCount = Math.ceil($scope.filesCount / $scope.itemsOnPage);
-                    }
-                    
-                    for (var i = 0; i < pagesCount; i++) {
-                        $scope.pages.push(i+1);
-                    }
-                    if ((pagesCount * $scope.itemsOnPage) !== $scope.filesCount) {
-                        $scope.pages.push($scope.pages.length +1);
-                    }
-                    });
+                    calculatePagerPages();
+                });
             }
 
             $scope.removeDocument = function (file) {
+                $rootScope.showLoader();
                 $http.post('@Url.Action("DeleteDocument", "Documents")', { documentId: file.Id }).then(
                     function () {
-                        $rootScope.showSuccess("@DocsManagerWebApp.Resources.DocsManagerResources.FileRemoved_message");
+                        $rootScope.showSuccess("@DocsManagerResources.FileRemoved_message");
                         $scope.getfilesList();
+                        $rootScope.hideLoader();
                     });
             };
 
@@ -51,9 +43,29 @@
                 window.location.href = "@Url.Action("DownloadDocument", "Documents")?fileId=" + file.Id;
             }
 
+            function calculatePagerPages() {
+                var pagesCount = 0;
+                $scope.pages = [];
+                if ($scope.filesCount / $scope.itemsOnPage >= 0) {
+                    pagesCount = Math.floor($scope.filesCount / $scope.itemsOnPage);
+                } else {
+                    pagesCount = Math.ceil($scope.filesCount / $scope.itemsOnPage);
+                }
+
+                for (var i = 0; i < pagesCount; i++) {
+                    $scope.pages.push(i+1);
+                }
+                if ((pagesCount * $scope.itemsOnPage) !== $scope.filesCount) {
+                    $scope.pages.push($scope.pages.length +1);
+                }
+                $rootScope.hideLoader();
+            }
+            
             $timeout(function () {
                 $scope.getfilesList();
             });
+
+
         }
     ]);
 </script>

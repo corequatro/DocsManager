@@ -20,6 +20,20 @@
                 "hideMethod": "fadeOut"
             }
 
+            $scope.loading = false;
+            $rootScope.showLoader = function () {
+                $scope.loading = true;
+            }
+
+       
+
+
+            $rootScope.hideLoader = function () {
+                $timeout(function () {
+                    $scope.loading = false;
+                }, 500);
+            }
+
             $rootScope.showError = function (title, content) {
                 if (!title) {
                     toastr.error(content);

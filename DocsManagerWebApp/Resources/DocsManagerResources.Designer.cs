@@ -187,6 +187,15 @@ namespace DocsManagerWebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to total items count.
+        /// </summary>
+        public static string PagesCount_label {
+            get {
+                return ResourceManager.GetString("PagesCount_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to rtf file type.
         /// </summary>
         public static string RtfFileName {
