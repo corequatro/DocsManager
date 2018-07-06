@@ -15,36 +15,47 @@
             </files-upload-control>
         </div>
     </div>
-
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>@DocsManagerResources.FileName_tableLabel</th>
-                <th>@DocsManagerResources.FileSize_tableLabel</th>
-                <th>@DocsManagerResources.FileType_tableLabel</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="file in filesFromDb">
-                <td>{{file.FileName}}
-                    <button type="button"
-                            ng-click="downloadDocument(file)"
-                            class="btn btn-primary">
-                        <i class="glyphicon glyphicon-download-alt" aria-hidden="true"></i>
-                    </button>
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>@DocsManagerResources.FileName_tableLabel</th>
+                    <th>@DocsManagerResources.FileSize_tableLabel</th>
+                    <th>@DocsManagerResources.FileType_tableLabel</th>
+                    <th>@DocsManagerResources.DocumentManager_tableLabel</th>
+                    <th>@DocsManagerResources.DocumentApplication_tableLabel</th>
+                    <th>@DocsManagerResources.DocumentCompany_tableLabel</th>
+                    <th>@DocsManagerResources.DocumentCreationDate_tableLabel</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="file in filesFromDb">
+                    <td>{{file.FileName | cutextension}}</td>
+                    <td>{{file.FileSize | convertsize}}</td>
+                    <td>{{file.FileType | converttype}}</td>
+                    <td>{{file.Manager | hideNoInfo}}</td>
+                    <td>{{file.Application | hideNoInfo}}</td>
+                    <td>{{file.Company | hideNoInfo}}</td>
+                    <td>{{file.CreatedDate | date : 'short'}}</td>
+                    <td>
+                        <button type="button"
+                                ng-click="downloadDocument(file)"
+                                class="btn btn-primary">
+                            <i class="glyphicon glyphicon-download-alt" aria-hidden="true"></i>
+                        </button>
                     </td>
-                <td>{{file.FileSize}}</td>
-                <td>{{file.FileType}}</td>
-                <td>
-                    <button type="button"
-                            ng-click="removeDocument(file)"
-                            class="btn btn-danger">
-                        <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    <td>
+                        <button type="button"
+                                ng-click="removeDocument(file)"
+                                class="btn btn-danger">
+                            <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </div>

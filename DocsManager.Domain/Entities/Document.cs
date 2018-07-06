@@ -13,6 +13,9 @@ namespace DocsManager.Domain.Entities
     {
         public int Id { get; set; }
         public string FileName { get; set; }
+        public string Application { get; set; }
+        public string Company { get; set; }
+        public string Manager { get; set; }
         public DocumentTypesEnum FileType { get; set; }
         public int FileSize { get; set; }
         public byte[] DocumentFile { get; set; }

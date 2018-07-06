@@ -7,6 +7,7 @@ namespace DocsManager.Bll.Dto
 {
     public class DocumentsFilterDto
     {
-        
+        public int Offset { get; set; }
+        public int CountOnPage { get; set; }
     }
 }

@@ -11,9 +11,7 @@ namespace DocsManager.Domain.DocumentTypes
 {
     public class DocxDocument : BaseDocument
     {
-        public string Application { get; set; }
-        public string Company { get; set; }
-        public string Manager { get; set; }
+   
         
         public override void ProcessDocument()
         {

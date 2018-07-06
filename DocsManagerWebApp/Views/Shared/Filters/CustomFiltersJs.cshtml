@@ -1,4 +1,5 @@
-﻿<script type="text/javascript">
+﻿@using DocsManager.Domain.Entities
+<script type="text/javascript">
     var app = angular.module('app');
     angular.module("app").filter("convertsize", function () {
         return function (bytes) {
@@ -6,6 +7,39 @@
             if (bytes == 0) return '0 Byte';
             var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
             return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+        };
+    });
+
+    angular.module("app").filter("cutextension", function () {
+        return function (filename) {
+            var name = filename.split('.')[0];
+            return name;
+        };
+    });
+
+    angular.module("app").filter("hideNoInfo", function () {
+        return function (field) {
+            if (field != null && field.length > 0) {
+                return field;
+            } else {
+                return "no info";
+            }
+            };
+    });
+
+    angular.module('app').filter("converttype", function () {
+        return function (value) {
+            switch (value) {
+            case @((int)DocumentTypesEnum.Doc):
+                    return "@DocsManagerResources.DocFileName";
+            case @((int)DocumentTypesEnum.Docx):
+                    return "@DocsManagerResources.DocxFileName";
+            case @((int)DocumentTypesEnum.Rtf):
+                return "@DocsManagerResources.RtfFileName";
+                default:
+                    ""
+            }
+            return;
         };
     });
 </script>

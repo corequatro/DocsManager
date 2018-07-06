@@ -22,7 +22,7 @@
             $scope.downloadDocument = function(file) {
                 window.location.href = "@Url.Action("DownloadDocument", "Documents")?fileId=" + file.Id;
             }
-            
+
             $timeout(function () {
                 $scope.getfilesList();
             });

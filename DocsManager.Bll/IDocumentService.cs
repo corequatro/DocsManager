@@ -12,7 +12,8 @@ namespace DocsManager.Bll
 {
     public interface IDocumentService
     {
-        Task<IList<DocumentDto>> GetAllDocumentsAsync(DocumentsFilterDto filterDto);
+        Task<IList<DocumentDto>> GetDocumentsAsync(DocumentsFilterDto filterDto);
+        Task<int> GetDocumentsCountAsync(DocumentsFilterDto filterDto);
         Task CreateDocumentAsync(BaseDocument document);
         Task DeleteDocumentAsync(int documentId);
         Task<DocumentDto> GetDocumentByFileIdAsyncTask(int fileId);

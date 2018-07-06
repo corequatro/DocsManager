@@ -117,53 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FileRemoved_message" xml:space="preserve">
-    <value>file removed successfully</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="FileName_tableLabel" xml:space="preserve">
-    <value>file name</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
-  <data name="FileSize_tableLabel" xml:space="preserve">
-    <value>file size</value>
-  </data>
-  <data name="DocumentManager_tableLabel" xml:space="preserve">
-    <value>document manager</value>
-  </data>
-  <data name="DocumentApplication_tableLabel" xml:space="preserve">
-    <value>created in application</value>
-  </data>
-  <data name="DocumentCompany_tableLabel" xml:space="preserve">
-    <value>created in company</value>
-  </data>
-  <data name="DocumentCreationDate_tableLabel" xml:space="preserve">
-    <value>created</value>
-  </data>
-  <data name="FileType_tableLabel" xml:space="preserve">
-    <value>file type</value>
-  </data>
-  <data name="DocFileName" xml:space="preserve">
-    <value>doc file type</value>
-  </data>
-  <data name="DocxFileName" xml:space="preserve">
-    <value>docx file type</value>
-  </data>
-  <data name="RtfFileName" xml:space="preserve">
-    <value>rtf file type</value>
-  </data>
-  <data name="SelectFiles_fileupload_label" xml:space="preserve">
-    <value>select files</value>
-  </data>
-  <data name="FilesUploadedMessage_fileupload_label" xml:space="preserve">
-    <value>files uploaded</value>
-  </data>
-  <data name="FilesRemovedMessage_fileupload_label" xml:space="preserve">
-    <value>file removed</value>
-  </data>
-  <data name="LastModifiedDate_fileupload_label" xml:space="preserve">
-    <value>last modified date</value>
-  </data>
-  <data name="FileCreated_message" xml:space="preserve">
-    <value>file created successfully</value>
-  </data>
-
 </root>

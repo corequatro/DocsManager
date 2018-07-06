@@ -61,6 +61,60 @@ namespace DocsManagerWebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to doc file type.
+        /// </summary>
+        public static string DocFileName {
+            get {
+                return ResourceManager.GetString("DocFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to created in application.
+        /// </summary>
+        public static string DocumentApplication_tableLabel {
+            get {
+                return ResourceManager.GetString("DocumentApplication_tableLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to created in company.
+        /// </summary>
+        public static string DocumentCompany_tableLabel {
+            get {
+                return ResourceManager.GetString("DocumentCompany_tableLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to created.
+        /// </summary>
+        public static string DocumentCreationDate_tableLabel {
+            get {
+                return ResourceManager.GetString("DocumentCreationDate_tableLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to document manager.
+        /// </summary>
+        public static string DocumentManager_tableLabel {
+            get {
+                return ResourceManager.GetString("DocumentManager_tableLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to docx file type.
+        /// </summary>
+        public static string DocxFileName {
+            get {
+                return ResourceManager.GetString("DocxFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to file created successfully.
         /// </summary>
         public static string FileCreated_message {
@@ -129,6 +183,15 @@ namespace DocsManagerWebApp.Resources {
         public static string LastModifiedDate_fileupload_label {
             get {
                 return ResourceManager.GetString("LastModifiedDate_fileupload_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rtf file type.
+        /// </summary>
+        public static string RtfFileName {
+            get {
+                return ResourceManager.GetString("RtfFileName", resourceCulture);
             }
         }
         

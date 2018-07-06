@@ -19,7 +19,10 @@ namespace DocsManager.Domain.Extensions
                 FileName = document.FileName,
                 FileType = document.FileType,
                 CreatedBy = document.CreatedBy,
-                FileSize = document.FileSize
+                FileSize = document.FileSize,
+                Company = document.Company,
+                Manager = document.Manager,
+                Application = document.Application
             };
         }
     }

@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using DocsManager.Bll;
 using DocsManager.Bll.Dto;
 using DocsManagerWebApp.Factories;
+using DocsManagerWebApp.Models.Base;
 using DocsManagerWebApp.Models.Documents;
 
 namespace DocsManagerWebApp.Controllers
@@ -28,8 +29,9 @@ namespace DocsManagerWebApp.Controllers
         [HttpGet]
         public async Task<ActionResult> GetDocumentsList(DocumentsFilterViewModel viewModel)
         {
-            var items = await _documentService.GetAllDocumentsAsync((DocumentsFilterDto)viewModel);
-            return GetJson(items);
+            var items = await _documentService.GetDocumentsAsync((DocumentsFilterDto)viewModel);
+            var itemsCount = await _documentService.GetDocumentsCountAsync((DocumentsFilterDto)viewModel);
+            return GetJson(new PageCollectionViewModel<DocumentDto>(items, itemsCount));
         }
 
         [HttpPost]
@@ -39,8 +41,6 @@ namespace DocsManagerWebApp.Controllers
             {
                 var document = _documentFactory.BuildDocumentForProcessing(file);
                 document.ProcessDocument();
-                document.FileName = file.FileName;
-                document.FileSize = file.ContentLength;
                 await _documentService.CreateDocumentAsync(document);
             }
 

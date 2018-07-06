@@ -11,6 +11,10 @@ namespace DocsManager.Domain.DocumentTypes
     public abstract class BaseDocument
     {
         public int Id { get; set; }
+        public string Application { get; set; }
+        public string Company { get; set; }
+        public string Manager { get; set; }
+
         public byte[] DocumentFile { get; protected set; }
         public string CreatedBy { get; set; }
         public string FileName { get; set; }
