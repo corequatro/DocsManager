@@ -7,13 +7,13 @@ namespace DocsManager.Dal
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ExtraFields : IMigrationMetadata
+    public sealed partial class InitMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ExtraFields));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807062048122_ExtraFields"; }
+            get { return "201807082128448_InitMigration"; }
         }
         
         string IMigrationMetadata.Source
