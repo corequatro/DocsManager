@@ -35,7 +35,6 @@ namespace DocsManager.Dal
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Remove Pluralizing Table Name
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Configurations.AddFromAssembly(typeof(DocsManagerDbContext).Assembly);
         }

@@ -11,15 +11,11 @@ namespace DocsManager.Domain.DocumentTypes
 {
     public class DocxDocument : BaseDocument
     {
-   
-        
         public override void ProcessDocument()
         {
             WordprocessingDocument wordprocessingDocument = WordprocessingDocument.Open(FileStream, true);
             if (wordprocessingDocument.ExtendedFilePropertiesPart == null)
                 wordprocessingDocument.AddExtendedFilePropertiesPart();
-
-
             AddExtraInfo(wordprocessingDocument);
             FillDocumentSpecificInfo(wordprocessingDocument);
             wordprocessingDocument.ExtendedFilePropertiesPart.Properties.Save();

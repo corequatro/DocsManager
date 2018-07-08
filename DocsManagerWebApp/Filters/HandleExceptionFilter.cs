@@ -21,7 +21,6 @@ namespace DocsManagerWebApp.Filters
             LoggingException(filterContext.Exception);
             filterContext.HttpContext.Response.Clear();
             filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
-
             bool isAjax = string.CompareOrdinal(filterContext.HttpContext.Request.Headers["X-Requested-With"], "XMLHttpRequest") == 0;
             if (isAjax)
             {
@@ -46,8 +45,6 @@ namespace DocsManagerWebApp.Filters
 
             filterContext.ExceptionHandled = true;
         }
-      
-
 
         private void LoggingException(Exception exception)
         {
@@ -68,10 +65,5 @@ namespace DocsManagerWebApp.Filters
                 log.FatalException(exception.Message, exception);
             }
         }
-
-    
     }
-
-  
- 
 }

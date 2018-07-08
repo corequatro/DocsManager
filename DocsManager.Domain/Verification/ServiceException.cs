@@ -28,11 +28,7 @@ namespace DocsManager.Domain.Verification
             : base(message, innerException)
         {
         }
-
-
-
-
-
+        
         public string Property { get; private set; }
     }
 }

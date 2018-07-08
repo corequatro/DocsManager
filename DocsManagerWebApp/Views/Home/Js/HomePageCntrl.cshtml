@@ -58,6 +58,10 @@
                 if ((pagesCount * $scope.itemsOnPage) !== $scope.filesCount) {
                     $scope.pages.push($scope.pages.length +1);
                 }
+                if ($scope.currentPage > 1 && $scope.files.length === 0) {
+                    $scope.currentPage = $scope.currentPage - 1;
+                    $scope.getfilesList();
+                }
                 $rootScope.hideLoader();
             }
             

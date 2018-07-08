@@ -18,7 +18,5 @@ namespace DocsManagerWebApp.Models.Documents
                 Offset = filterViewModel.Offset
             };
         }
-
-
     }
 }

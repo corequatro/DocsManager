@@ -44,8 +44,7 @@ namespace DocsManagerWebApp.Factories
             document.FileStream = docStream;
             return document;
         }
-
-
+        
         public string GetMimeTypeByFormatType(DocumentTypesEnum docType)
         {
             switch (docType)

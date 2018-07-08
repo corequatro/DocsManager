@@ -10,7 +10,6 @@ namespace DocsManagerWebApp.App_Start
     using DocsManager.Dal.Repositories;
     using DocsManager.IDal;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
 

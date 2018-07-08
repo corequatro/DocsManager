@@ -5,7 +5,6 @@
 
 using System;
 using DocsManager.Domain.BaseEntities;
-using DocsManager.Domain.DocumentTypes;
 
 namespace DocsManager.Domain.Entities
 {

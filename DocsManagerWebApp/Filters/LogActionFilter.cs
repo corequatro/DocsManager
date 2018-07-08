@@ -6,7 +6,6 @@
 using System;
 using System.Text;
 using System.Web.Mvc;
-using log4net;
 using Ninject.Extensions.Logging;
 
 namespace DocsManagerWebApp.Filters
@@ -14,7 +13,6 @@ namespace DocsManagerWebApp.Filters
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class LogActionFilter : FilterAttribute, IActionFilter
     {
-
         public LogActionFilter()
         {
             ILoggerFactory loggerFactory = DependencyResolver.Current.GetService<ILoggerFactory>();
