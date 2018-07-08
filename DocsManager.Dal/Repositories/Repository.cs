@@ -40,7 +40,14 @@ namespace DocsManager.Dal.Repositories
             _context.Set<TEntity>().Remove(entity);
             await _context.SaveChangesAsync();
         }
-        
+
+        public async Task RemoveAsync(TEntity value)
+        {
+            _context.Entry(value).State = EntityState.Deleted;
+            _context.Set<TEntity>().Remove(value);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<TEntity> GetItemByIdAsync(int id)
         {
             return await _context.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);

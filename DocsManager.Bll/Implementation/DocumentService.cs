@@ -55,7 +55,7 @@ namespace DocsManager.Bll.Implementation
 
         public async Task DeleteDocumentAsync(int documentId)
         {
-            await _documentRepository.RemoveAsync(documentId);
+            await _documentRepository.RemoveAsync(new Document { Id = documentId });
         }
 
         public async Task<DocumentDto> GetDocumentByFileIdAsyncTask(int fileId)
